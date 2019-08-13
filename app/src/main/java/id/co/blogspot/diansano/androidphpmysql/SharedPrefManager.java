@@ -4,7 +4,6 @@ package id.co.blogspot.diansano.androidphpmysql;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-//this class is for singleton
 public class SharedPrefManager {
 
     private static SharedPrefManager mInstance;
@@ -56,5 +55,17 @@ public class SharedPrefManager {
         editor.clear();
         editor.apply();
         return true;
+    }
+
+    public String getUsername() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
+                Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_USERNAME, null);
+    }
+
+    public String getUserEmail() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME,
+                Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_USER_EMAIL, null);
     }
 }
