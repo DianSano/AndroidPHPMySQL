@@ -33,6 +33,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        if(SharedPrefManager.getInstance(this).isLoggedIn()) {
+            finish();
+            startActivity(new Intent(this, ProfileActivity.class));
+            return;
+        }
+
         editTextUsername = findViewById(R.id.editTextUsername);
         editTextPassword = findViewById(R.id.editTextPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
@@ -68,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                                         obj.getString("email")
                                 );
                         startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                        finish();
                     } else {
                         Toast.makeText(getApplicationContext(), obj.getString("message"),
                                 Toast.LENGTH_LONG).show();
